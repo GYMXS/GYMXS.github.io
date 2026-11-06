@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Libreta de notas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand">Libreta de notas</div>
+    <div id="side"></div>
+    <div class="foot">
+      <button class="link" data-act="backup">Copia de seguridad</button>
+      <button class="link" data-act="restore">Restaurar</button>
+      <input type="file" id="file" accept="application/json" hidden>
+    </div>
+  </aside>
+  <main id="main"></main>
+</div>
+
+<dialog id="dlg">
+  <form method="dialog">
+    <h3 id="dlgTitle"></h3>
+    <p id="dlgHint"></p>
+    <textarea id="dlgInput" class="field" rows="1"></textarea>
+    <div class="acts">
+      <button class="btn primary" value="ok">Guardar</button>
+      <button class="btn" value="cancel" formnovalidate>Cancelar</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
