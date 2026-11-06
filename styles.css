@@ -90,14 +90,16 @@ aside {
 }
 
 .theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   width: 34px;
   height: 34px;
   background: none;
   border: 1px solid var(--line);
   border-radius: 6px;
   color: var(--muted);
-  font-size: 1.05rem;
-  line-height: 1;
 }
 
 .theme-btn:hover {
@@ -185,6 +187,8 @@ tr:focus-within .tools {
 
 .tools button,
 .x {
+  display: inline-flex;
+  align-items: center;
   background: none;
   border: 0;
   color: var(--muted);
@@ -485,4 +489,10 @@ dialog textarea {
   .wrap {
     max-height: none;
   }
+}
+
+/* Iconos SVG alineados dentro de los botones */
+.tools button svg,
+.theme-btn svg {
+  display: block;
 }

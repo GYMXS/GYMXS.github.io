@@ -38,6 +38,14 @@ function fmt(n) {
   return n.toLocaleString('es-PE', {maximumFractionDigits: 1});
 }
 
+// Iconos en SVG: se ven igual en cualquier dispositivo
+const svg = inner => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`;
+
+const ICON_EDIT = svg('<path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/>');
+const ICON_MOON = svg('<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>');
+const ICON_SUN = svg('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>');
+
 const newSection = name => ({id: uid(), name, evals: [], alumnos: []});
 
 
@@ -141,7 +149,7 @@ function sectionItem(aula, sec, selectedId) {
       </button>
       <span class="tools">
         <button data-act="ren-sec" data-a="${aula.id}" data-s="${sec.id}"
-                title="Renombrar sección" aria-label="Renombrar sección">✎</button>
+                title="Renombrar sección" aria-label="Renombrar sección">${ICON_EDIT}</button>
         <button data-act="del-sec" data-a="${aula.id}" data-s="${sec.id}"
                 title="Eliminar sección" aria-label="Eliminar sección">×</button>
       </span>
@@ -155,7 +163,7 @@ function aulaBlock(aula, selectedId) {
         <span>${esc(aula.name)}</span>
         <span class="tools">
           <button data-act="ren-aula" data-a="${aula.id}"
-                  title="Renombrar aula" aria-label="Renombrar aula">✎</button>
+                  title="Renombrar aula" aria-label="Renombrar aula">${ICON_EDIT}</button>
           <button data-act="del-aula" data-a="${aula.id}"
                   title="Eliminar aula" aria-label="Eliminar aula">×</button>
         </span>
@@ -264,7 +272,7 @@ function studentRow(sec, alumno) {
           <span>${esc(alumno.name)}</span>
           <span class="tools">
             <button data-act="ren-alumno" data-al="${alumno.id}"
-                    title="Renombrar" aria-label="Renombrar alumno">✎</button>
+                    title="Renombrar" aria-label="Renombrar alumno">${ICON_EDIT}</button>
             <button data-act="del-alumno" data-al="${alumno.id}"
                     title="Eliminar alumno" aria-label="Eliminar alumno">×</button>
           </span>
@@ -622,7 +630,7 @@ function savedTheme() {
 function applyTheme(theme) {
   const dark = theme === 'dark';
   document.documentElement.dataset.theme = theme;
-  themeBtn.textContent = dark ? '☀' : '☾';
+  themeBtn.innerHTML = dark ? ICON_SUN : ICON_MOON;
   themeBtn.title = dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
   themeBtn.setAttribute('aria-label', themeBtn.title);
 }
