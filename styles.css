@@ -9,8 +9,27 @@
   --accent-ink: #37584e;
   --accent-soft: #e3ece8;
   --warn: #a2594f;
+  --on-accent: #fff;
+  --backdrop: rgba(36, 48, 44, .35);
+  color-scheme: light;
   --serif: "Source Serif 4", Georgia, serif;
   --sans: "Public Sans", system-ui, sans-serif;
+}
+
+/* Tema oscuro (se activa con data-theme="dark" en <html>) */
+:root[data-theme="dark"] {
+  --bg: #1a211f;
+  --surface: #222b28;
+  --ink: #e3e9e6;
+  --muted: #8fa09a;
+  --line: #33403c;
+  --accent: #7fb0a2;
+  --accent-ink: #a3cdc1;
+  --accent-soft: #2b3b36;
+  --warn: #e0968a;
+  --on-accent: #14201c;
+  --backdrop: rgba(0, 0, 0, .5);
+  color-scheme: dark;
 }
 
 /* Base */
@@ -59,9 +78,31 @@ aside {
   gap: 20px;
 }
 
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+}
+
 .brand {
   font: 600 1.35rem/1.2 var(--serif);
-  padding: 0 8px;
+}
+
+.theme-btn {
+  width: 34px;
+  height: 34px;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.theme-btn:hover {
+  color: var(--ink);
+  border-color: var(--accent);
 }
 
 #side {
@@ -222,7 +263,7 @@ h1 {
 .btn.primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .btn.primary:hover {
@@ -403,7 +444,7 @@ dialog {
 }
 
 dialog::backdrop {
-  background: rgba(36, 48, 44, .35);
+  background: var(--backdrop);
 }
 
 dialog h3 {

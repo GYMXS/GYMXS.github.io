@@ -605,6 +605,45 @@ document.getElementById('file').addEventListener('change', async e => {
 
 
 /* ----------------------------------------------------------
-   9. Inicio
+   9. Tema claro / oscuro
+   ---------------------------------------------------------- */
+const THEME_KEY = 'libreta-tema';
+const themeBtn = document.getElementById('themeBtn');
+
+function savedTheme() {
+  try {
+    return localStorage.getItem(THEME_KEY);
+  } catch (e) {
+    return null;
+  }
+}
+
+// Aplica el tema y actualiza el icono y la etiqueta del botón
+function applyTheme(theme) {
+  const dark = theme === 'dark';
+  document.documentElement.dataset.theme = theme;
+  themeBtn.textContent = dark ? '☀' : '☾';
+  themeBtn.title = dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+  themeBtn.setAttribute('aria-label', themeBtn.title);
+}
+
+themeBtn.addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  try {
+    localStorage.setItem(THEME_KEY, next);
+  } catch (e) {}
+  applyTheme(next);
+});
+
+// Si la persona nunca eligió un tema, se sigue el del sistema
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  if (!savedTheme()) applyTheme(e.matches ? 'dark' : 'light');
+});
+
+applyTheme(document.documentElement.dataset.theme || 'light');
+
+
+/* ----------------------------------------------------------
+   10. Inicio
    ---------------------------------------------------------- */
 saveAndRender();
